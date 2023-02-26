@@ -29,7 +29,22 @@ def strassen_matrix_mult(a, b):
     return c
 
 
-
+def largest_nth_element(arr, n):
+    if len(arr) == 1:
+        return arr[0]
+    
+    pivot = arr[0]
+    left = [x for x in arr[1:] if x > pivot]
+    right = [x for x in arr[1:] if x <= pivot]
+    
+    k = len(left)
+    
+    if n == k+1:
+        return pivot
+    elif n <= k:
+        return largest_nth_element(left, n)
+    else:
+        return largest_nth_element(right, n-k-1)
 
 def nice_string(s):
     size=len(s)
@@ -41,10 +56,6 @@ def nice_string(s):
     else:
         return nice_string(s[:(size)])
 
-    
-s = "aAb"
-result = nice_string(s)
-print(result)
 
 
 
